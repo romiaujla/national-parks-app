@@ -1,0 +1,25 @@
+/* Global Styles */
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+.container{
+    max-width: 1200px;
+    margin: auto;
+}
+body, p, h1, h2, h3, h4, h5, h6,
+ul, li, a, button, form, fieldset, legend,
+input, div, header{
+    padding: 0;
+    margin: 0;
+}
+
+ul{
+    list-style: none;   
+}
+
+a{
+    text-decoration: none;
+}
