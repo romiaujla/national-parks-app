@@ -15,7 +15,6 @@ function searchParks(states, maxParks){
         .then(response => response.json())
         .then(responseJson => displayResults(responseJson))
         .catch(err => console.log(err.message));
-
 }
 
 
