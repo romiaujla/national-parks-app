@@ -1,26 +1,36 @@
 'use strict';
 
-function displayParksFound(numOfParks){
+function displayParksFound(numOfParks, states){
 
+    // replacing %2c with ", " in the states string
+    states = states.split("%2C").join(", ");
+
+    // If parks found display how many are found
     if(numOfParks > 0){
-
         $('.showing-results-section .wrapper').append(`
             <div class="showing-results">
-                Displaying ${numOfParks} Parks Found
+                Displaying ${numOfParks} parks found in <span class="showing-parks-in-states">${states}</span>
+            </div>
+        `);
+    }else{ // else displaying no results found
+        $('.showing-results-section .wrapper').append(`
+            <div class="showing-results">
+                No Parks Found
             </div>
         `);
     }
 }
 
-function displayResults(responseJson)
+function displayResults(responseJson, states)
 {   
-    console.log(responseJson);
-
     let parks = responseJson.data;
     
-    displayParksFound(parks.length);
+    // Call back for the function to show how many parks found
+    displayParksFound(parks.length, states);
 
     for(let i = 0; i < parks.length; i++){
+
+        // HTML to append to the browser for search results
         $('.search-results-section .wrapper').append(`
             <div class="park-wrapper">
                 <div class="park">
@@ -40,7 +50,6 @@ function displayResults(responseJson)
             </div>
         `)
     }
-    
 }
 
 function searchParks(states, maxParks){
@@ -48,10 +57,20 @@ function searchParks(states, maxParks){
     const apiKey = "X6gU1HR9voYTM2Thisadb19sGIz2AjsTqdE1Jcim";
     const query = `stateCode=${states}&limit=${maxParks}`;
 
-    console.log(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&${query}`);
+    // fetching data form NPS api
     fetch(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&${query}`)
         .then(response => response.json())
-        .then(responseJson => displayResults(responseJson))
+        .then(responseJson => {
+            
+            // hide the label saying Searching through nature
+            $('.searching').hide();
+
+            // call back to the functions that appends html search-result-section
+            displayResults(responseJson, states);
+
+            // show the footer at the bottom to notify end of search result
+            $('.footer-section').show();
+        })
         .catch(err => {
             $('.search-results-section .wrapper').append(`
                 <div class="showing-results">
@@ -65,11 +84,20 @@ function searchParks(states, maxParks){
 function watchForm(){
 
     $('.search-form').on('submit', function(e){
+
         e.preventDefault();
 
-        // Empty any contents in the search section
+        // Empty and hide any equired elements that need to be reset to default states
+        $('.showing-results-section .wrapper').html("");
         $('.search-results-section .wrapper').html("");
+        $('.footer-section').hide()
+
+        // remove focus from submit button
         $('.submit-button').blur();
+
+        // As soon as user clicks search button, display a message for search taking place
+        $('.searching').show();
+        
 
         // Set value of max park entered by the user, else by default the value is 10
         let maxParks = $('.max-parks').val();
@@ -79,11 +107,13 @@ function watchForm(){
         
         // removes all commas and replaces with %2C and gets rids of all spaces
         states = (states.replace(/ +/g, "")).replace(/,/g,"%2C");
-
-        // console.log(states);
         
         // call back for the function to search for parks
         searchParks(states, maxParks);
+
+        // Reset the input boxes to deaulft settings
+        $('.max-parks').val("10");
+        $('.states').val("");
         
     });
 }

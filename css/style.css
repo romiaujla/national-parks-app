@@ -22,6 +22,9 @@ input, div, header{
     padding: 0;
     margin: 0;
 }
+body{
+    background: snow;
+}
 
 ul{
     list-style: none;   
@@ -88,15 +91,15 @@ a:visited{
     padding: 20px;
 }
 /* Showing results section style */
-.showing-results-section .wrapper{
-    border-bottom: 2px solid #3C3B6E;
-    /* max-width: 700px; */
-}
 .showing-results{
     padding: 0px 50px 30px 50px;
     max-width: 700px;
     margin: auto;
     font-size: 0.9em;   
+    border-bottom: 2px solid #3C3B6E;
+}
+.showing-parks-in-states{
+    text-transform: uppercase;
 }
 /* Search Result Styles */
 .park{
@@ -117,16 +120,18 @@ a:visited{
     font-size: 0.9em;
 }
 .park-description{
-    font-size: .9em;
+    font-size: .8em;
     line-height: 1.6em;
-    padding: 10px 0px;
+    padding: 30px 0px;
+    color: #3C3B6E;
 }
 .park-links{
     font-size: 0.9em;
 }
 
-/* Footer style */
-.footer-section{
+/* Searching div style */
+.searching, .footer-section{
+    display: none;
     text-align: center;
     padding: 20px;
     font-size: 0.8em;
