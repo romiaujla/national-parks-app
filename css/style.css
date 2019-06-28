@@ -13,7 +13,7 @@
     -webkit-font-smoothing: antialiased;
 }
 .wrapper{
-    max-width: 1200px;
+    max-width: 90%;
     margin: auto;
 }
 body, p, h1, h2, h3, h4, h5, h6,
@@ -25,10 +25,6 @@ input, div, header{
 
 ul{
     list-style: none;   
-}
-
-a{
-    text-decoration: none;
 }
 .app-button{
     border: none;
@@ -44,6 +40,9 @@ a{
 .app-button:hover{
     background: rgb(14, 135, 175);
     transition: .3s ease;
+}
+a:visited{
+    color: blue;
 }
 /* header style */
 .header-section{
@@ -88,10 +87,57 @@ a{
     text-align: center;
     padding: 20px;
 }
-
+/* Showing results section style */
+.showing-results-section .wrapper{
+    border-bottom: 2px solid #3C3B6E;
+    /* max-width: 700px; */
+}
+.showing-results{
+    padding: 0px 50px 30px 50px;
+    max-width: 700px;
+    margin: auto;
+    font-size: 0.9em;   
+}
 /* Search Result Styles */
-.search-results-section div h2{
-    font-weight: 600;
+.park{
+    padding: 50px;
+    max-width: 700px;
+    margin: auto;
+    border-bottom: 2px solid #3C3B6E;
+}
+.park-full-name{
     text-transform: uppercase;
+    font-size: 1em;
+}
+.park-full-name a{
+    text-decoration: underline;
+}
+.location{
+    margin-top: 10px;
     font-size: 0.9em;
+}
+.park-description{
+    font-size: .9em;
+    line-height: 1.6em;
+    padding: 10px 0px;
+}
+.park-links{
+    font-size: 0.9em;
+}
+
+/* Footer style */
+.footer-section{
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 480px){
+    .park{
+        padding: 20px 10px;
+    }
+    .showing-results{
+        padding: 0px 10px 30px 10px;
+    }
 }
