@@ -88,3 +88,10 @@ a{
     text-align: center;
     padding: 20px;
 }
+
+/* Search Result Styles */
+.search-results-section div h2{
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}

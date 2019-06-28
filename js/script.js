@@ -2,6 +2,15 @@
 
 function displayResults(responseJson)
 {   
+    console.log(responseJson);
+    let parks = responseJson.data;
+    for(let i = 0; i < parks.length; i++){
+        $('.search-results-section .wrapper').append(`
+            <h2 class"full-name">
+                ${parks[i].fullName}
+            </h2>
+        `)
+    }
     
 }
 
@@ -29,7 +38,7 @@ function watchForm(){
         let states = $('.states').val();
         
         // removes all commas and replaces with %2C and gets rids of all spaces
-        // states = (states.replace(/ +/g, "")).replace(/,/g,"%2C");
+        states = (states.replace(/ +/g, "")).replace(/,/g,"%2C");
 
         // console.log(states);
         
